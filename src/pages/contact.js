@@ -1,8 +1,8 @@
 function Contact() {
   return (
-    <>
-      <h1>Contact page</h1>
-    </>
+    <div>
+      <h1>Contact pdstgrdthgrthtrhth age</h1>
+    </div>
   );
 }
 export default Contact;
