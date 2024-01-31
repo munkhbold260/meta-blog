@@ -8,7 +8,7 @@ export default function Card({ blog }) {
         <div className="self-stretch h-32 flex-col justify-start items-start gap-4 flex">
           <div className="px-2.5 py-1 bg-indigo-500 bg-opacity-5 rounded-md justify-center items-center gap-1 inline-flex">
             <div className="text-indigo-500 text-sm font-medium font-['Work Sans'] leading-tight">
-              Technology
+              <p>{blog.tags}</p>
             </div>
           </div>
           <div className="self-stretch text-gray-900 text-2xl font-semibold font-['Work Sans'] leading-7">
