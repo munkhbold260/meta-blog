@@ -1,13 +1,23 @@
 import Card from "@/components/cards/Card";
 import SubNavbar from "@/components/SubNavbar";
+import { useState } from "react";
 
-export default function Design({ data }) {
+export default function Design({ designs }) {
+  const [articles, setArticles] = useState(designs);
+  const [pageNumber, setPageNumber] = useState(2);
+  const [loading, setLoading] = useState(false);
+
+  async function loadMoreHandler() {
+    setLoading(true);
+    const response = await fetch();
+  }
+
   return (
     <div className=" w-[1920px] px-[352px] flex flex-col gap-12 mt-12 mb-20">
       <SubNavbar />
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap gap-5">
-          {data.map((a) => {
+          {designs.map((a) => {
             return (
               <Card
                 key={`${a.title}-${a.id}`}
@@ -34,6 +44,6 @@ export async function getServerSideProps() {
   const response = await fetch(
     "https://dev.to/api/articles?page=2&per_page=3&tag=design"
   );
-  const data = await response.json();
-  return { props: { data } };
+  const designs = await response.json();
+  return { props: { designs } };
 }
