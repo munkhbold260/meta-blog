@@ -9,7 +9,21 @@ export default function Design({ designs }) {
 
   async function loadMoreHandler() {
     setLoading(true);
-    const response = await fetch();
+    const response = await fetch(
+      `https://dev.to/api/articles?tag=design&per_page=3&page=${pageNumber}`
+    );
+    const data = await response.json();
+    setArticles([...articles, ...data]);
+    setPageNumber(pageNumber + 1);
+    setLoading(false);
+  }
+
+  if (loading) {
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <h1>Loading...</h1>
+      </div>
+    );
   }
 
   return (
@@ -17,7 +31,7 @@ export default function Design({ designs }) {
       <SubNavbar />
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap gap-5">
-          {designs.map((a) => {
+          {articles.map((a) => {
             return (
               <Card
                 key={`${a.title}-${a.id}`}
@@ -32,7 +46,10 @@ export default function Design({ designs }) {
           })}
         </div>
 
-        <button className="text-zinc-500 text-base font-medium font-['Work Sans'] leading-normal   w-[123px] h-12 px-5 py-3 rounded-md border border-zinc-500 border-opacity-30 justify-center m-auto items-center gap-3 inline-flex">
+        <button
+          onClick={loadMoreHandler}
+          className="text-zinc-500 text-base font-medium font-['Work Sans'] leading-normal   w-[123px] h-12 px-5 py-3 rounded-md border border-zinc-500 border-opacity-30 justify-center m-auto items-center gap-3 inline-flex"
+        >
           Load More
         </button>
       </div>
@@ -42,8 +59,10 @@ export default function Design({ designs }) {
 
 export async function getServerSideProps() {
   const response = await fetch(
-    "https://dev.to/api/articles?page=2&per_page=3&tag=design"
+    `https://dev.to/api/articles?tag=design&per_page=3`
   );
   const designs = await response.json();
-  return { props: { designs } };
+  return {
+    props: { designs },
+  };
 }

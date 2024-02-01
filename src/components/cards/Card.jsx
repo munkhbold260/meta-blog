@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Card({
@@ -7,9 +8,14 @@ export default function Card({
   img_url2,
   user_name,
   date,
+  id,
 }) {
   return (
-    <div className="w-[392px] h-[488px] p-4 bg-white rounded-xl border border-gray-200 flex-col justify-center items-center gap-4 inline-flex">
+    <Link
+      href={`/blog/article/${id}`}
+      className="w-[392px] h-[488px] p-4 bg-white rounded-xl border border-gray-200 flex-col justify-center items-center gap-4 inline-flex"
+    >
+      {" "}
       <img className="w-[360px] h-60 rounded-md" src={img_url} alt="" />
       <div className="self-stretch h-[200px] p-2 flex-col justify-start items-start gap-5 flex">
         <div className="self-stretch h-32 flex-col justify-start items-start gap-4 flex">
@@ -34,6 +40,6 @@ export default function Card({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

@@ -21,7 +21,6 @@ export default function Blog({ data }) {
             );
           })}
         </div>
-
         <button className="text-zinc-500 text-base font-medium font-['Work Sans'] leading-normal   w-[123px] h-12 px-5 py-3 rounded-md border border-zinc-500 border-opacity-30 justify-center m-auto items-center gap-3 inline-flex">
           Load More
         </button>
@@ -30,7 +29,7 @@ export default function Blog({ data }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const response = await fetch(
     "https://dev.to/api/articles?page=2&per_page=15"
   );
