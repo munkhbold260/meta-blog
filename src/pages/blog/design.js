@@ -11,6 +11,7 @@ export default function Design({ designs }) {
     setLoading(true);
     const response = await fetch(
       `https://dev.to/api/articles?tag=design&per_page=3&page=${pageNumber}`
+      // `https://dev.to/api/articles?tag=design&per_page=3`
     );
     const data = await response.json();
     setArticles([...articles, ...data]);
@@ -41,6 +42,7 @@ export default function Design({ designs }) {
                 img_url2={a.user.profile_image_90}
                 user_name={a.user.name}
                 date={a.created_at}
+                id={a.id}
               />
             );
           })}

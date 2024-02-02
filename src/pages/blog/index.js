@@ -1,13 +1,37 @@
 import SubNavbar from "@/components/SubNavbar";
 import Card from "@/components/cards/Card";
+import { useState } from "react";
 
 export default function Blog({ data }) {
+  const [articles, setArticles] = useState(data);
+  const [pageNumber, setPageNumber] = useState(2);
+  const [loading, setLoading] = useState(false);
+
+  async function loadMoreHandler() {
+    setLoading(true);
+    const response = await fetch(
+      `https://dev.to/api/articles?per_page=3&page=${pageNumber}`
+    );
+    const data = await response.json();
+    setArticles([...articles, ...data]);
+    setPageNumber(pageNumber + 1);
+    setLoading(false);
+  }
+  console.log(pageNumber);
+  if (loading) {
+    return (
+      <div className="w-full h-[100vh] flex items-center justify-center">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   return (
     <div className="w-[1920px] px-[352px] flex flex-col gap-12 mt-12 mb-20">
       <SubNavbar />
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap gap-5">
-          {data.map((a) => {
+          {articles.map((a) => {
             return (
               <Card
                 key={`${a.title}-${a.id}`}
@@ -17,11 +41,15 @@ export default function Blog({ data }) {
                 img_url2={a.user.profile_image_90}
                 user_name={a.user.name}
                 date={a.created_at}
+                id={a.id}
               />
             );
           })}
         </div>
-        <button className="text-zinc-500 text-base font-medium font-['Work Sans'] leading-normal   w-[123px] h-12 px-5 py-3 rounded-md border border-zinc-500 border-opacity-30 justify-center m-auto items-center gap-3 inline-flex">
+        <button
+          onClick={loadMoreHandler}
+          className="text-zinc-500 text-base font-medium font-['Work Sans'] leading-normal   w-[123px] h-12 px-5 py-3 rounded-md border border-zinc-500 border-opacity-30 justify-center m-auto items-center gap-3 inline-flex"
+        >
           Load More
         </button>
       </div>
@@ -30,9 +58,7 @@ export default function Blog({ data }) {
 }
 
 export async function getServerSideProps() {
-  const response = await fetch(
-    "https://dev.to/api/articles?page=2&per_page=15"
-  );
+  const response = await fetch("https://dev.to/api/articles?per_page=3&page=1");
   const data = await response.json();
 
   // const path = blogs[0].path;

@@ -10,6 +10,7 @@ export default function Card({
   date,
   id,
 }) {
+  console.log(id);
   return (
     <Link
       href={`/blog/article/${id}`}
