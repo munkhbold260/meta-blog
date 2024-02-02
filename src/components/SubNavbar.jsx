@@ -1,8 +1,23 @@
 import Link from "next/link";
 import { useState } from "react";
+
 export default function SubNavbar() {
+  const [color, setColor] = useState(
+    "text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
+  );
   return (
     <div className="w-[1216px] justify-start items-center gap-[30px] inline-flex">
+      <ul className="menu menu-horizontal bg-base-200">
+        <li>
+          <a>Item 1</a>
+        </li>
+        <li>
+          <a>Item 2</a>
+        </li>
+        <li>
+          <a>Item 3</a>
+        </li>
+      </ul>
       <div className="justify-start items-center gap-5 flex">
         <Link
           className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
