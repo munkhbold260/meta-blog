@@ -1,69 +1,47 @@
-import Link from "next/link";
 import { useState } from "react";
 
+/////////////////////////////
+// export default function Counter() {
+//   const [count, setCount] = useState(0);
+
+//   function handleClick() {
+//     setCount(count + 1);
+//   }
+
+//   return (
+//     <button onClick={handleClick}>
+//       You pressed me {count} times
+//     </button>
+//   );
+// }
+////////////////////////
+
 export default function SubNavbar() {
-  const [color, setColor] = useState(
-    "text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-  );
   return (
     <div className="w-[1216px] justify-start items-center gap-[30px] inline-flex">
-      <ul className="menu menu-horizontal bg-base-200">
-        <li>
-          <a>Item 1</a>
+      <div className="justify-start items-center gap-5 flex menu menu-horizontal">
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/"}>All</a>
         </li>
-        <li>
-          <a>Item 2</a>
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/design"}>Design</a>
         </li>
-        <li>
-          <a>Item 3</a>
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/travel"}>Travel</a>
         </li>
-      </ul>
-      <div className="justify-start items-center gap-5 flex">
-        <Link
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-          href={"/blog/"}
-        >
-          All
-        </Link>
-
-        <Link
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-          href={"/blog/design"}
-        >
-          Design
-        </Link>
-        <Link
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-          href={"/blog/travel"}
-        >
-          Travel
-        </Link>
-
-        <Link
-          href={"/blog/fashion"}
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-        >
-          Fashion
-        </Link>
-        <Link
-          href={"/blog/technology"}
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-        >
-          Technology
-        </Link>
-        <Link
-          href={"/blog/branding"}
-          className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-        >
-          Branding
-        </Link>
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/fashion"}>Fashion</a>
+        </li>
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/technology"}>Technology</a>
+        </li>
+        <li className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+          <a href={"/blog/branding"}>Branding</a>
+        </li>
       </div>
-      <Link
-        href={"/blog/viewAll"}
-        className="grow shrink basis-0 text-right text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
-      >
-        View All
-      </Link>
+      <li className="grow shrink basis-0 text-right text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]">
+        <a href={"/blog/viewAll"}>View All</a>
+      </li>
     </div>
   );
 }
