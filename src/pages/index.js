@@ -2,7 +2,6 @@ import TrendCard from "@/components/cards/TrendCard";
 import HighlightCard from "@/components/cards/HighlightCard";
 import { useState } from "react";
 import Card from "@/components/cards/Card";
-import Art from "@/components/Art";
 
 export default function ({ designs }) {
   const [articles, setArticles] = useState(designs);
@@ -29,7 +28,6 @@ export default function ({ designs }) {
   }
   return (
     <div className="w-[1920px] px-[352px] flex flex-col gap-[100px] mt-12 mb-20">
-      <Art />
       <HighlightCard />
       <TrendCard />
       <div className="w-[1216px]  flex-col justify-start items-start gap-8 inline-flex">
