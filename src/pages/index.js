@@ -3,7 +3,7 @@ import HighlightCard from "@/components/cards/HighlightCard";
 import { useState } from "react";
 import Card from "@/components/cards/Card";
 
-export default function ({ designs }) {
+export default function ({ designs, highLights, trends }) {
   const [articles, setArticles] = useState(designs);
   const [pageNumber, setPageNumber] = useState(2);
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,23 @@ export default function ({ designs }) {
   }
   return (
     <div className="w-[1920px] px-[352px] flex flex-col gap-[100px] mt-12 mb-20">
-      <HighlightCard />
+      <div className="carousel">
+        {highLights.map((b, index) => {
+          return (
+            <HighlightCard
+              // key={`${b.title}-${b.id}`}
+              item={index}
+              title={b.title}
+              img_url={b.cover_image}
+              tag={b.tags}
+              img_url2={b.user.profile_image_90}
+              user_name={b.user.name}
+              date={b.created_at}
+              id={b.id}
+            />
+          );
+        })}
+      </div>
       <TrendCard />
       <div className="w-[1216px]  flex-col justify-start items-start gap-8 inline-flex">
         <div className="w-[184px] text-gray-900 text-2xl font-bold font-['Work Sans'] leading-7">
@@ -63,11 +79,23 @@ export default function ({ designs }) {
 }
 
 export async function getServerSideProps() {
+  //////////
   const response = await fetch(
     `https://dev.to/api/articles?tag=design&per_page=3`
   );
   const designs = await response.json();
+  // ////////
+  const response1 = await fetch(
+    `https://dev.to/api/articles?tag=design&per_page=4`
+  );
+  const highLights = await response1.json();
+  // ///////
+  // const response3 = await fetch(
+  //   `https://dev.to/api/articles?tag=design&per_page=3`
+  // );
+  // const trends = await response3.json();
+  // ///////
   return {
-    props: { designs },
+    props: { designs, highLights },
   };
 }

@@ -16,7 +16,6 @@ export default function Card({
       href={`/blog/article/${id}`}
       className="w-[392px] h-[488px] p-4 bg-white rounded-xl border border-gray-200 flex-col justify-center items-center gap-4 inline-flex"
     >
-      {" "}
       <img className="w-[360px] h-60 rounded-md" src={img_url} alt="" />
       <div className="self-stretch h-[200px] p-2 flex-col justify-start items-start gap-5 flex">
         <div className="self-stretch h-32 flex-col justify-start items-start gap-4 flex">
