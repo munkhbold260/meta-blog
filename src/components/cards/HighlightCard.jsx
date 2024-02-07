@@ -1,3 +1,6 @@
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
+
 export default function Highlight({
   title,
   img_url,
@@ -6,10 +9,10 @@ export default function Highlight({
   user_name,
   date,
   id,
-  index,
+  item,
 }) {
   return (
-    <div id={index} className="carousel-item  flex flex-col">
+    <div id={item} className="carousel-item  flex flex-col">
       <div
         style={{
           backgroundImage: `url(${img_url})`,
@@ -38,11 +41,11 @@ export default function Highlight({
         </div>
       </div>
       <div className="flex">
-        <a href={index - 1} className="btn">
-          aaa
+        <a href={`#${item - 1}`} className="btn">
+          <IoIosArrowBack />
         </a>
-        <a href={index + 1} className="btn ">
-          bbb
+        <a href={`#${item + 1}`} className="btn ">
+          <IoIosArrowForward />
         </a>
       </div>
     </div>
