@@ -32,7 +32,7 @@ export default function ({ designs, highLights, trends }) {
         {highLights.map((b, index) => {
           return (
             <HighlightCard
-              // key={`${b.title}-${b.id}`}
+              key={`${b.title}-${b.id}`}
               item={index}
               title={b.title}
               img_url={b.cover_image}
@@ -45,7 +45,30 @@ export default function ({ designs, highLights, trends }) {
           );
         })}
       </div>
-      <TrendCard />
+      <div className="w-[1231px] h-[378px] flex flex-col gap-[30px] ">
+        <div className="justify-start items-start gap-8 inline-flex">
+          <div className="w-[184px] text-gray-900 text-2xl font-bold font-['Work Sans'] leading-7">
+            Trending
+          </div>
+        </div>
+        <div className=" flex gap-[30px]">
+          {trends.map((c) => {
+            return (
+              <TrendCard
+                key={`${c.title}-${c.id}`}
+                title={c.title}
+                img_url={c.cover_image}
+                tag={c.tags}
+                img_url2={c.user.profile_image_90}
+                user_name={c.user.name}
+                date={c.created_at}
+                id={c.id}
+              />
+            );
+          })}
+        </div>
+      </div>
+
       <div className="w-[1216px]  flex-col justify-start items-start gap-8 inline-flex">
         <div className="w-[184px] text-gray-900 text-2xl font-bold font-['Work Sans'] leading-7">
           All Blog Post
@@ -90,12 +113,12 @@ export async function getServerSideProps() {
   );
   const highLights = await response1.json();
   // ///////
-  // const response3 = await fetch(
-  //   `https://dev.to/api/articles?tag=design&per_page=3`
-  // );
-  // const trends = await response3.json();
+  const response2 = await fetch(
+    `https://dev.to/api/articles?tag=design&per_page=4`
+  );
+  const trends = await response2.json();
   // ///////
   return {
-    props: { designs, highLights },
+    props: { designs, highLights, trends },
   };
 }
