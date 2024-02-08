@@ -10,7 +10,7 @@ export default function Design({ designs }) {
   async function loadMoreHandler() {
     setLoading(true);
     const response = await fetch(
-      `https://dev.to/api/articles?tag=design&per_page=3&page=${pageNumber}`
+      `https://dev.to/api/articles?tag=travel&per_page=3&page=${pageNumber}`
     );
     const data = await response.json();
     setArticles([...articles, ...data]);

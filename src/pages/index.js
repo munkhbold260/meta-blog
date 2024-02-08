@@ -57,7 +57,7 @@ export default function ({ designs, highLights, trends }) {
               <TrendCard
                 key={`${c.title}-${c.id}`}
                 title={c.title}
-                img_url={c.cover_image}
+                img_url={c.social_image}
                 tag={c.tags}
                 img_url2={c.user.profile_image_90}
                 user_name={c.user.name}
@@ -103,9 +103,7 @@ export default function ({ designs, highLights, trends }) {
 
 export async function getServerSideProps() {
   //////////
-  const response = await fetch(
-    `https://dev.to/api/articles?tag=design&per_page=3`
-  );
+  const response = await fetch(`https://dev.to/api/articles?per_page=3`);
   const designs = await response.json();
   // ////////
   const response1 = await fetch(
