@@ -1,3 +1,4 @@
+import Card from "@/components/cards/Card";
 import React from "react";
 
 export default function Page({ data }) {
@@ -5,7 +6,7 @@ export default function Page({ data }) {
     <div className=" w-[1920px] px-[352px] flex flex-col gap-12 mt-12 mb-20">
       <div className="flex flex-col gap-8">
         <div className="flex flex-wrap gap-5">
-          {articles.map((a) => {
+          {data.map((a) => {
             return (
               <Card
                 key={`${a.title}-${a.id}`}
@@ -35,7 +36,7 @@ export default function Page({ data }) {
 export const getServerSideProps = async (context) => {
   const { query } = context;
   const { id } = query;
-  const response = await fetch(`https://dev.to/`);
+  const response = await fetch(`https://dev.to/api/articles?per_page=3`);
   const data = await response.json();
   return {
     props: {

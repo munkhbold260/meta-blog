@@ -32,6 +32,7 @@ export default function Blog({ data }) {
     { title: "Fashion" },
     { title: "Technology" },
     { title: "Branding" },
+    { title: "View All" },
   ];
 
   return (
@@ -41,7 +42,7 @@ export default function Blog({ data }) {
           {title.map((b) => {
             return (
               <Link
-                href={`/blog/${title}`}
+                href={`/blog/${b.title}`}
                 className="text-zinc-600 text-xs font-bold font-['Work Sans'] leading-[25px]"
               >
                 {b.title}
