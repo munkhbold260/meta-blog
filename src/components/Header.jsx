@@ -6,7 +6,7 @@ const Header = () => {
   const router = useRouter();
 
   return (
-    <div className="w-[1850px] px-[350px] py-8 flex items-center justify-between ">
+    <div className="max-w-[1850px] px-[350px] py-8 flex items-center justify-between m-auto">
       <HeaderIcon />
 
       <div className="flex items-center gap-10">

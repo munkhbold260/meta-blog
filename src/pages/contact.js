@@ -27,7 +27,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div className="w-[643px] h-[440px] m-auto pt-[29px] pr-[130xp] pb-[26px] pl-[35px] flex flex-col gap-6 bg-[#F6F6F7] rounded-xl">
+      <div className="w-[643px] h-[440px] m-auto pt-[29px] pr-[130xp] mb-[100px] pl-[35px] flex flex-col gap-6 bg-[#F6F6F7] rounded-xl">
         <div className=" font-semib text-xl">Leave a Message</div>
         <div className="flex flex-col gap-5">
           <div className="flex w-[478px] justify-between">
